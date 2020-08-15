@@ -198,4 +198,27 @@ annotate ProjectService.Projects with {
             ]
         }
     );
+
+    customerIndustry @(
+        Common           : {
+            Text            : customerIndustry.name,
+            TextArrangement : #TextOnly,
+            ValueListWithFixedValues : true
+        },
+        Common.ValueList : {
+            Label          : 'Customer Indestry',
+            CollectionPath : 'CustomerIndustries',
+            Parameters     : [
+            {
+                $Type             : 'Common.ValueListParameterInOut',
+                ValueListProperty : 'code',
+                LocalDataProperty : customerIndustry_code
+            },           
+            {
+                $Type             : 'Common.ValueListParameterDisplayOnly',
+                ValueListProperty : 'name'
+            }
+            ]
+        }
+    );
 };
