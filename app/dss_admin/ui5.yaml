@@ -1,0 +1,6 @@
+specVersion: "1.1"
+type: application
+metadata:
+  name: sdcpmtool
+  services:
+    - sdcpmtool-html5-repo-runtime

@@ -1,0 +1,33 @@
+{
+    "scopes": [
+        {
+            "name": "$XSAPPNAME.admin",
+            "description": "admin"
+        },
+        {
+            "name": "uaa.user",
+            "description": "UAA"
+        },
+        {
+            "name": "uaa.admin",
+            "description": "XS User read"           
+        }
+    ],
+    "role-templates": [
+        {
+            "name": "Token_Exchange",
+            "description": "UAA Token Exchange",
+            "scope-references": [
+                "uaa.user"
+            ]
+        },
+        {
+            "name": "sdcpmtool_dss_admin",
+            "scope-references": [
+                "$XSAPPNAME.admin",
+                "uaa.admin"
+            ],
+            "description": "generated"
+        }
+    ]
+}

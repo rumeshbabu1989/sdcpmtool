@@ -1,0 +1,191 @@
+## Generated mta.yaml based on template version 0.2.0
+## appName = sdcpmtool
+## language=nodejs; multiTenant=false
+## approuter=
+_schema-version: '3.1'
+ID: sdcpmtool
+version: 1.0.0
+description: "A simple CAP project."
+parameters:
+  enable-parallel-deployments: true
+  
+  
+build-parameters:
+  before-all:
+   - builder: custom
+     commands:
+      - npm install
+      - npx cds build
+
+modules:
+ # --------------------- SERVER MODULE ------------------------
+ - name: sdcpmtool-srv
+ # ------------------------------------------------------------
+   type: nodejs
+   path: gen/srv
+   properties:
+     EXIT: 1  # required by deploy.js task to terminate 
+   requires:
+    # Resources extracted from CAP configuration
+    - name: sdcpmtool-db
+    - name: sdcpmtool-uaa
+   provides:
+    - name: srv-binding      # required by consumers of CAP services (e.g. approuter)
+      properties:
+        srv-url: ${default-url}
+
+ # -------------------- SIDECAR MODULE ------------------------
+ - name: db
+ # ------------------------------------------------------------
+   type: hdb
+   path: gen/db  
+   parameters:
+     app-name: sdcpmtool-db  
+   requires:
+    # 'hana' and 'xsuaa' resources extracted from CAP configuration
+    - name: sdcpmtool-db
+
+
+# -------------------- SIDECAR MODULE ------------------------
+ - name: sdcpmtool-approuter
+ # ------------------------------------------------------------
+   deployed-after:
+     - sdcpmtool-portalsite
+   type: approuter.nodejs
+   path: _cf-mta/approuter
+   parameters:
+     disk-quota: 256M
+     memory: 128M
+     routes:
+       - route: https://${org}-${space}.${default-domain}   
+   requires:
+    # 'hana' and 'xsuaa' resources extracted from CAP configuration
+    - name: sdcpmtool-portalsite
+    - name: sdcpmtool-portal    
+    - name: sdcpmtool-uaa
+    - name: sdcpmtool-html5-repo-runtime
+    - name: srv-binding
+      group: destinations
+      properties:
+        forwardAuthToken: true
+        name: srv-binding
+        url: '~{srv-url}'
+   properties:
+     CORS: >-
+       [
+           {
+               "uriPattern": "^/(.*)$",
+               "allowedOrigin": [ { "host": "*", "protocol": "https" }, { "host": "*", "protocol": "http" }],
+               "allowedMethods": ["GET", "POST", "HEAD", "OPTIONS", "PUT", "DELETE"],
+               "allowedHeaders": ["Origin", "Accept", "X-Requested-With", "Content-Type", "Access-Control-Request-Method", "Access-Control-Request-Headers", "Authorization", "X-Sap-Cid", "X-Csrf-Token", "Accept-Language"],
+               "exposeHeaders": ["Accept", "Authorization", "X-Requested-With", "X-Sap-Cid", "Access-Control-Allow-Origin", "Access-Control-Allow-Credentials", "X-Csrf-Token", "Content-Type"]
+           }
+       ]
+     httpHeaders: >-
+       [
+           {
+               "Content-Security-Policy": "frame-ancestors 'self' *.cpp.cfapps.sap.hana.ondemand.com ;"
+           }
+       ]
+     SEND_XFRAMEOPTIONS: false         
+
+ #####################################################################################################################
+ # FLP
+ #####################################################################################################################
+ - name: sdcpmtool-portalsite
+   type: com.sap.portal.content
+   path: _cf-mta/portalsite
+   deployed-after:
+     - sdcpmtool-html5-app-deployer
+   parameters:
+     memory: 32M
+     disk-quota: 32M
+   requires:
+     - name: sdcpmtool-portal
+     - name: sdcpmtool-uaa
+     - name: sdcpmtool-html5-repo-host
+
+ # -------------------- SIDECAR MODULE ------------------------
+ - name: sdcpmtool-app
+ # ------------------------------------------------------------
+   type: html5
+   path: app/dss_admin
+   build-parameters:
+     builder: custom
+     commands:
+       - npm install
+       - npm run build
+       - cp ./xs-app.json dist/xs-app.json # needed!
+     supported-platforms: []
+     build-result: dist
+   parameters:
+     app-name: sdcpmtool-app
+   requires:
+    # 'hana' and 'xsuaa' resources extracted from CAP configuration
+    - name: srv-binding
+      group: destinations
+      properties:
+        forwardAuthToken: true
+        name: srv-binding
+        url: '~{srv-url}'              
+
+ - name: sdcpmtool-html5-app-deployer
+   type: com.sap.html5.application-content
+   path: _cf-mta/appdeployer
+   requires:
+     - name: sdcpmtool-html5-repo-host
+   parameters:
+     memory: 256M
+     disk-quota: 1024M
+     config:
+      sizeLimit: 12
+   build-parameters:
+     requires:
+       - name: sdcpmtool-app
+         artifacts:
+           - "./*"
+         target-path: resources/dss_admin
+     ignore: [".gitignore"]
+
+resources:
+ # services extracted from CAP configuration
+ # 'service-plan' can be configured via 'cds.requires.<name>.vcap.plan'
+# ------------------------------------------------------------
+ - name: sdcpmtool-db
+# ------------------------------------------------------------
+   type: com.sap.xs.hdi-container
+   parameters:
+     service: hana  # or 'hanatrial' on trial landscapes
+     service-plan: hdi-shared
+   properties:
+     hdi-service-name: ${service-name}
+
+ - name: sdcpmtool-html5-repo-host
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service-plan: app-host
+     service: html5-apps-repo
+
+ - name: sdcpmtool-html5-repo-runtime
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service-plan: app-runtime
+     service: html5-apps-repo
+
+ - name: sdcpmtool-portal
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service-plan: standard
+     service: portal
+
+ - name: sdcpmtool-uaa
+   type: org.cloudfoundry.managed-service
+   parameters:
+     service-plan: application
+     service-keys: 
+       - name: sdcpmtool-uaa-key        
+     service: xsuaa
+     path: ./cds-security.json
+     config:
+        xsappname: sdcpmtool-approuter
+        tenant-mode: dedicated
