@@ -1,0 +1,14 @@
+{
+  "name": "sdcpmtool-approuter",
+  "private": true,
+  "description": "App router",
+  "engines": {
+    "node": "^12"
+  },
+  "scripts": {
+    "start": "node node_modules/@sap/approuter/approuter.js"
+  },
+  "dependencies": {
+    "@sap/approuter": "^6"
+  }
+}

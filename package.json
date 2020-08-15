@@ -1,0 +1,45 @@
+{
+    "name": "sdcpmtool",
+    "version": "1.0.0",
+    "description": "A simple CAP project.",
+    "repository": "https://github.com/rumeshbabu1989/sdcpmtool.git",
+    "license": "UNLICENSED",
+    "author": "r.somaskandan@sap.com",
+    "private": true,
+    "dependencies": {
+        "@sap/cds": "^3",
+        "@sap/hana-client": "^2.4.177",
+        "@sap/xsenv": "^3.0.0",
+        "@sap/xssec": "^3.0.9",
+        "express": "^4",
+        "passport": "^0.4.1"
+    },
+    "scripts": {
+        "start": "cds run --in-memory?",
+        "watch": "cds watch"
+    },
+    "cds": {
+        "i18n": {
+            "folders": [
+                "_i18n",
+                "i18n",
+                "/app/dss_admin/webapp/i18n"
+            ]
+        },
+        "requires": {
+            "db": {
+                "kind": "sqlite",
+                "model": [
+                    "db",
+                    "srv"
+                ]
+            },
+            "uaa": {
+                "kind": "xsuaa"
+            }
+        }
+    },
+    "devDependencies": {
+        "sqlite3": "^5.0.0"
+    }
+}

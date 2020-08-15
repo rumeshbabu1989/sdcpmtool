@@ -1,0 +1,90 @@
+{
+  "_version": "3.0.0",
+  "identification": {
+    "entityType": "bundle",
+    "id": "ab0cf17f-9117-4abe-8057-9e88b7fe9fc6-1576585155993"
+  },
+  "payload": {
+    "catalogs": [
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "sampleAppsCatalog",
+          "entityType": "catalog",
+          "title": "Catalog"
+        },
+        "payload": {
+          "viz": [
+            {
+              "vizId": "projects-manage",
+              "appId": "sdcpmtool"
+            }            
+          ]
+        }
+      }
+    ],
+    "groups": [
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "sampleAppsGroup",
+          "entityType": "group",
+          "title": "PMT Tool Apps"
+        },
+        "payload": {
+          "viz": [
+            {
+              "id": "sdcpmtool",
+              "appId": "sdcpmtool",
+              "vizId": "projects-manage"
+            }           
+          ]
+        }
+      }
+    ],
+    "sites": [
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "a6fcf49f-8892-4250-aead-82e1910e8194",
+          "entityType": "site",
+          "title": "Sample Apps"
+        },
+        "payload": {
+          "config": {
+            "ushellConfig": {              
+              "renderers": {
+                "fiori2": {
+                  "componentData": {
+                    "config": {
+                      "applications": {
+                        "Shell-home": {}
+                      },
+                      "enablePersonalization": true,
+                      "enableSetLanguage": true,
+                      "enableSetTheme": true
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "groupsOrder": ["sampleAppsGroup"],
+          "sap.cloud.portal": {
+            "config": {
+              "ui5LibraryUrl": "https://ui5.sap.com",     
+              "theme.id": "sap_fiori_3",
+              "theme.active": [
+                "sap_fiori_3",
+                "sap_belize",
+                "sap_belize_plus",
+                "sap_belize_hcb",
+                "sap_belize_hcw"
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}
