@@ -5,6 +5,10 @@
             "description": "admin"
         },
         {
+            "name": "$XSAPPNAME.managers",
+            "description": "Managers"
+        },
+        {
             "name": "uaa.user",
             "description": "UAA"
         },
@@ -25,6 +29,14 @@
             "name": "sdcpmtool_dss_admin",
             "scope-references": [
                 "$XSAPPNAME.admin",
+                "uaa.admin"
+            ],
+            "description": "generated"
+        },
+        {
+            "name": "sdcpmtool_managers",
+            "scope-references": [
+                "$XSAPPNAME.managers",
                 "uaa.admin"
             ],
             "description": "generated"

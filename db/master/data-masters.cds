@@ -1,3 +1,5 @@
+using { User } from '@sap/cds/common';
+
 type ProjectType : Association to sap.sdcpmtool.master.ProjectTypes;
 type ProjectMode : Association to sap.sdcpmtool.master.ProjectModes;
 type ProjectStatus : Association to sap.sdcpmtool.master.ProjectStatuss;
@@ -10,8 +12,16 @@ type CompanyCode : Association to sap.sdcpmtool.master.CompanyCodes;
 type BCPStatusField : Association to sap.sdcpmtool.master.BCPStatusFields;
 type FactoryRelevantField : Association to sap.sdcpmtool.master.FactoryRelevantFields;
 type ProjectPhaseField : Association to sap.sdcpmtool.master.ProjectPhaseFields;
+type PMToolUser : Association to sap.sdcpmtool.master.Users;
 
 context sap.sdcpmtool.master {
+
+    entity Users {
+        key userId : User;
+            userINo : String(10);
+            userName : String(50);
+    }
+
     entity ProjectTypes : CodeList {
         key code : String(2)
     }

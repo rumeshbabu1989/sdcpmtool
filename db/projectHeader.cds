@@ -3,7 +3,7 @@ using { cuid, Country, managed, Currency, User } from '@sap/cds/common';
 using { ProjectType, ProjectMode, ProjectStatus, 
         Region, SubRegion, BCPStatusField,
         DeliveryCenter, FactoryRelevantField, ProjectSize,
-        CustomerIndustry, ProjectPhaseField, CompanyCode } from './master';
+        CustomerIndustry, ProjectPhaseField, CompanyCode, PMToolUser } from './master';
 
 entity Projects : cuid, managed {
   projectId : Integer;
@@ -22,12 +22,12 @@ entity Projects : cuid, managed {
   country: Country;
   primaryDeliveryCenter: DeliveryCenter;
   bcpStatus: BCPStatusField;
-  qaLeadId: User;
+  qaLeadId: PMToolUser;
   factoryRelevant: FactoryRelevantField;
   projectSize: ProjectSize;
   customerIndustry: CustomerIndustry;
-  projectManager: User;
-  dpManager: User;
+  projectManager: PMToolUser;
+  dpManager: PMToolUser;
   projectPhase: ProjectPhaseField;
   muCompanyCode: CompanyCode;
   projectCurrency: Currency;

@@ -1,4 +1,6 @@
-annotate ProjectService.Projects with @(UI : {
+// using {sap.sdcpmtool.transaction as sdcpmtool} from '../../db/projectHeader';
+
+annotate ManagerService.MyProjects with @(UI : {
     HeaderInfo               : {
         TypeName       : 'Project',
         TypeNamePlural : 'Projects',
@@ -15,12 +17,7 @@ annotate ProjectService.Projects with @(UI : {
                 $Type  : 'UI.ReferenceFacet',
                 Label  : 'Basic Data',
                 Target : '@UI.FieldGroup#BasicData'
-            },
-            {
-                $Type  : 'UI.ReferenceFacet',
-                Label  : 'Project Leads',
-                Target : '@UI.FieldGroup#ProjectLeads'
-            },
+            },         
             {
                 $Type  : 'UI.ReferenceFacet',
                 Label  : 'Location',
@@ -46,13 +43,6 @@ annotate ProjectService.Projects with @(UI : {
     {Value : customerIndustry_code},
     {Value : projectDescription},    
     ]},
-    FieldGroup #ProjectLeads : {Data : [
-
-    {Value : projectManager_userId},
-    {Value : dpManager_userId},
-    {Value : qaLeadId_userId},
-
-    ]},
     FieldGroup #Location     : {Data : [
     {Value : region_code},
     {Value : subRegion_code},
@@ -66,5 +56,5 @@ annotate ProjectService.Projects with @(UI : {
     ]}
 });
 
-annotate sap.sdcpmtool.transaction.Projects with @fiori.draft.enabled;
-annotate ProjectService.Projects with @odata.draft.enabled;
+// annotate sap.sdcpmtool.transaction.Projects with @fiori.draft.enabled;
+// annotate ProjectService.Projects with @odata.draft.enabled;

@@ -127,7 +127,31 @@ modules:
       properties:
         forwardAuthToken: true
         name: srv-binding
-        url: '~{srv-url}'              
+        url: '~{srv-url}'
+
+ # -------------------- SIDECAR MODULE ------------------------
+ - name: sdcpmtool-app-managers
+ # ------------------------------------------------------------
+   type: html5
+   path: app/managers
+   build-parameters:
+     builder: custom
+     commands:
+       - npm install
+       - npm run build
+       - cp ./xs-app.json dist/xs-app.json # needed!
+     supported-platforms: []
+     build-result: dist
+   parameters:
+     app-name: sdcpmtool-app-managers
+   requires:
+    # 'hana' and 'xsuaa' resources extracted from CAP configuration
+    - name: srv-binding
+      group: destinations
+      properties:
+        forwardAuthToken: true
+        name: srv-binding
+        url: '~{srv-url}'
 
  - name: sdcpmtool-html5-app-deployer
    type: com.sap.html5.application-content
@@ -145,6 +169,11 @@ modules:
          artifacts:
            - "./*"
          target-path: resources/dss_admin
+     ignore: [".gitignore"]
+       - name: sdcpmtool-app-managers
+         artifacts:
+           - "./*"
+         target-path: resources/managers
      ignore: [".gitignore"]
 
 resources:

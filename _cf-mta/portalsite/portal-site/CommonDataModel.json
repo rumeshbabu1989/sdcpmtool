@@ -9,7 +9,7 @@
       {
         "_version": "3.0.0",
         "identification": {
-          "id": "sampleAppsCatalog",
+          "id": "sdcpmtoolAdminCatalog",
           "entityType": "catalog",
           "title": "Catalog"
         },
@@ -21,15 +21,31 @@
             }            
           ]
         }
+      },
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "sdcpmtoolManagerCatalog",
+          "entityType": "catalog",
+          "title": "Catalog"
+        },
+        "payload": {
+          "viz": [
+            {
+              "vizId": "myprojects-manage",
+              "appId": "sdcpmtool_managers"
+            }            
+          ]
+        }
       }
     ],
     "groups": [
       {
         "_version": "3.0.0",
         "identification": {
-          "id": "sampleAppsGroup",
+          "id": "sdcpmtoolAdminGroup",
           "entityType": "group",
-          "title": "PMT Tool Apps"
+          "title": "Admin"
         },
         "payload": {
           "viz": [
@@ -37,6 +53,23 @@
               "id": "sdcpmtool",
               "appId": "sdcpmtool",
               "vizId": "projects-manage"
+            }           
+          ]
+        }
+      },
+      {
+        "_version": "3.0.0",
+        "identification": {
+          "id": "sdcpmtoolManagersGroup",
+          "entityType": "group",
+          "title": "Managers"
+        },
+        "payload": {
+          "viz": [
+            {
+              "id": "sdcpmtool_managers",
+              "appId": "sdcpmtool_managers",
+              "vizId": "myprojects-manage"
             }           
           ]
         }
