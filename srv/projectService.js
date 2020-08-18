@@ -27,6 +27,7 @@ module.exports = cds.service.impl(async (service) => {
 
 		context.data.projectId = await projectId.getNextNumber();
 		context.data.projectArchiveFlag = false;
+		context.data.createdBy = context.user.id;
 	});
 
 	// service.prepend(()=>{
@@ -45,5 +46,16 @@ module.exports = cds.service.impl(async (service) => {
 		  );
 		n > 0 || req.error (500,`${projectId} Error while updating projects`)
 		});
+
+		service.after("READ", "Projects", async (projects, req) => {
+			// projects[0].dpManager_userId = req.user.id;
+			// const projetestctId = req.data;
+		  //   const tx = ProjectService.tx(req)
+		  //   let query = cds.parse.cql (`SELECT from Projects`)
+		  //   const books = await tx.run(query)
+		  // //   const books = await tx.run (SELECT.from (Projects).excluding ['IsActiveEntity'])
+		  //   return books
+		  
+		  });
 	//   });
 });
