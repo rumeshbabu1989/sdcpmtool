@@ -7,7 +7,7 @@
   "author": "r.somaskandan@sap.com",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^4",
+    "@sap/cds": "^3",
     "@sap/hana-client": "^2.4.177",
     "@sap/xsenv": "^3.0.0",
     "@sap/xssec": "^3.0.9",

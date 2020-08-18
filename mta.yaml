@@ -169,12 +169,12 @@ modules:
          artifacts:
            - "./*"
          target-path: resources/dss_admin
-     ignore: [".gitignore"]
+         ignore: [".gitignore"]
        - name: sdcpmtool-app-managers
          artifacts:
            - "./*"
          target-path: resources/managers
-     ignore: [".gitignore"]
+         ignore: [".gitignore"]
 
 resources:
  # services extracted from CAP configuration

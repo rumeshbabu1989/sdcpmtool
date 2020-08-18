@@ -11,11 +11,7 @@
         {
             "name": "uaa.user",
             "description": "UAA"
-        },
-        {
-            "name": "uaa.admin",
-            "description": "XS User read"           
-        }
+        }      
     ],
     "role-templates": [
         {
@@ -28,16 +24,14 @@
         {
             "name": "sdcpmtool_dss_admin",
             "scope-references": [
-                "$XSAPPNAME.admin",
-                "uaa.admin"
+                "$XSAPPNAME.admin"                
             ],
             "description": "generated"
         },
         {
             "name": "sdcpmtool_managers",
             "scope-references": [
-                "$XSAPPNAME.managers",
-                "uaa.admin"
+                "$XSAPPNAME.managers"                
             ],
             "description": "generated"
         }

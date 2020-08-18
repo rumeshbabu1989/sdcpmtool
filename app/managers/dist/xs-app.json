@@ -1,0 +1,26 @@
+{
+    "authenticationMethod": "route",
+    "routes": [
+      {
+        "source": "^/manager/(.*)$",
+        "target": "/manager/$1",
+        "destination": "srv-binding",
+        "authenticationType": "xsuaa",
+        "csrfProtection": false
+      },
+      {
+        "source": "^(.*)",
+        "target": "$1",   
+        "service": "html5-apps-repo-rt",
+        "authenticationType": "xsuaa",
+        "scope":{
+            "GET":["$XSAPPNAME.managers"],
+            "POST":["$XSAPPNAME.managers"],
+            "PATCH":["$XSAPPNAME.managers"],
+            "PUT":["$XSAPPNAME.managers"],
+            "DELETE":["$XSAPPNAME.managers"],
+            "default":["$XSAPPNAME.managers"]
+        }
+      }
+    ]
+  }
