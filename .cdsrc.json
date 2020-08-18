@@ -1,1 +1,80 @@
-{}
+{
+  "odata": {
+    "version": "v4"
+  },
+  "features": {
+    "snapi": true
+  },
+  "build": {
+    "target": "gen",
+    "tasks": [
+      {
+        "src": "db",
+        "for": "hana",
+        "options": {
+          "model": ["db", "srv"]
+        }
+      },
+      {
+        "src": "srv",
+        "for": "node-cf",
+        "options": {
+          "model": ["db", "srv", "app"]
+        }
+      }
+    ]
+  },
+  "cdsc": {
+    "__TODO:__odataContainment": true,
+    "toSql": {
+      "user": "testuser",
+      "csn": true,
+      "src": "sql"
+    }
+  },
+  "requires": {
+    "db": {
+      "kind": "hana"
+    },
+    "uaa": {
+      "kind": "xsuaa"
+    }
+  },
+  "auth": {
+    "passport": {
+      "strategy": "JWT"
+    }
+  },
+  "[development]": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": "db/scpmtool.db"
+        }
+      }
+    },
+    "auth": {
+      "passport": {
+        "strategy": "mock",
+        "users": {
+          "nirmal.g@sap.com": {
+            "roles": ["admin"]
+          },
+          "r.somaskandan@sap.com": {
+            "password":"test123",
+            "ID":"r.somaskandan@sap.com",
+            "roles": ["admin","managers","authenticated-user"]
+          },
+          "anonymous": {
+            "roles": ["managers"]
+          },
+          "admin": {
+            "roles": ["managers","sdcpmtool_managers"]
+          }
+        }
+      }
+    }
+  }
+}
+

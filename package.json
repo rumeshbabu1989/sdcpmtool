@@ -7,6 +7,7 @@
   "author": "r.somaskandan@sap.com",
   "private": true,
   "dependencies": {
+    "@sap/audit-logging": "^3.1.1",
     "@sap/cds": "^3",
     "@sap/hana-client": "^2.4.177",
     "@sap/xsenv": "^3.0.0",
@@ -28,14 +29,10 @@
     },
     "requires": {
       "db": {
-        "kind": "hana",
-        "models": [
-          "db",
-          "srv"
-        ]
-      },
-      "uaa": {
-        "kind": "xsuaa"
+        "kind": "sqlite",
+        "credentials": {
+          "database": "db/sdcpmtool.db"
+        }
       }
     }
   },
