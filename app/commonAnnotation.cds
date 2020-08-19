@@ -32,7 +32,7 @@ annotate sap.sdcpmtool.transaction.Projects with {
     muCompanyCode         @title : '{i18n>muCompanyCode}';
     projectCurrency       @title : '{i18n>projectCurrency}';
     projectDescription    @UI.MultiLineText @title : '{i18n>projectDescription}';
-    projectArchiveFlag    @readonly;
+    projectArchiveFlag    @readonly @title : 'Archived';
 };
 
 annotate sap.sdcpmtool.transaction.ProjectModes with {

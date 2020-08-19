@@ -1,11 +1,11 @@
 {
     "scopes": [
         {
-            "name": "$XSAPPNAME.admin",
+            "name": "$XSAPPNAME.sdcpmtool_dss_admin",
             "description": "admin"
         },
         {
-            "name": "$XSAPPNAME.managers",
+            "name": "$XSAPPNAME.sdcpmtool_managers",
             "description": "Managers"
         },
         {
@@ -24,14 +24,14 @@
         {
             "name": "sdcpmtool_dss_admin",
             "scope-references": [
-                "$XSAPPNAME.admin"                
+                "$XSAPPNAME.sdcpmtool_dss_admin"                
             ],
             "description": "generated"
         },
         {
             "name": "sdcpmtool_managers",
             "scope-references": [
-                "$XSAPPNAME.managers"                
+                "$XSAPPNAME.sdcpmtool_managers"                
             ],
             "description": "generated"
         }

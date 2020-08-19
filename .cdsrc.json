@@ -32,6 +32,15 @@
       "src": "sql"
     }
   },
+
+  "i18n": {
+    "folders": [
+      "_i18n",
+      "i18n",
+      "/app/dss_admin/webapp/i18n",
+      "/app/managers/webapp/i18n"
+    ]
+  },
   "requires": {
     "db": {
       "kind": "hana"
@@ -50,7 +59,7 @@
       "db": {
         "kind": "sqlite",
         "credentials": {
-          "database": "db/scpmtool.db"
+          "database": "db/sdcpmtool.db"
         }
       }
     },
@@ -64,13 +73,14 @@
           "r.somaskandan@sap.com": {
             "password":"test123",
             "ID":"r.somaskandan@sap.com",
-            "roles": ["admin","managers","authenticated-user"]
+            "roles": ["sdcpmtool_dss_admin","sdcpmtool_managers"]
           },
           "anonymous": {
-            "roles": ["managers"]
+            "password":"test123",
+            "roles": ["sdcpmtool_managers","sdcpmtool_dss_admin"]
           },
           "admin": {
-            "roles": ["managers","sdcpmtool_managers"]
+            "roles": ["sdcpmtool_managers","sdcpmtool_dss_admin"]
           }
         }
       }

@@ -24,16 +24,9 @@
       "folders": [
         "_i18n",
         "i18n",
-        "/app/dss_admin/webapp/i18n"
+        "/app/dss_admin/webapp/i18n",
+        "/app/managers/webapp/i18n"
       ]
-    },
-    "requires": {
-      "db": {
-        "kind": "sqlite",
-        "credentials": {
-          "database": "db/sdcpmtool.db"
-        }
-      }
     }
   },
   "devDependencies": {

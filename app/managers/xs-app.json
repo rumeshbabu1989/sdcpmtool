@@ -14,12 +14,12 @@
         "service": "html5-apps-repo-rt",
         "authenticationType": "xsuaa",
         "scope":{
-            "GET":["$XSAPPNAME.managers"],
-            "POST":["$XSAPPNAME.managers"],
-            "PATCH":["$XSAPPNAME.managers"],
-            "PUT":["$XSAPPNAME.managers"],
-            "DELETE":["$XSAPPNAME.managers"],
-            "default":["$XSAPPNAME.managers"]
+            "GET":["$XSAPPNAME.sdcpmtool_managers"],
+            "POST":["$XSAPPNAME.sdcpmtool_managers"],
+            "PATCH":["$XSAPPNAME.sdcpmtool_managers"],
+            "PUT":["$XSAPPNAME.sdcpmtool_managers"],
+            "DELETE":["$XSAPPNAME.sdcpmtool_managers"],
+            "default":["$XSAPPNAME.sdcpmtool_managers"]
         }
       }
     ]

@@ -1,0 +1,8 @@
+{
+    "welcomeFile": "/fiori.html",
+    "authenticationMethod": "route",
+	"routes": [{
+		"source": "^/(.*)",
+		"destination": "srv_api"		
+	}]
+}

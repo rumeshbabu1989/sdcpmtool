@@ -1,41 +1,34 @@
 using {sap.sdcpmtool.transaction as sdcpmtool} from '../db/projectHeader';
 
-annotate sdcpmtool.Projects with {
-    projectName @(
-        Common.FieldControl : #Mandatory
-    );
+annotate sdcpmtool.Projects with @(
+    Capabilities.SearchRestrictions : {Searchable : false}
+) {
+    projectName           @(Common.FieldControl : #Mandatory);
+    actualStartDate       @(Common.FieldControl : #Mandatory);
 
-    actualStartDate @(
-        Common.FieldControl : #Mandatory
-    );
-
-    region      @(       
-        Common.ValueList : {
-            Label          : 'Regions',
-            CollectionPath : 'Regions',
-            Parameters     : [
-            {
-                $Type             : 'Common.ValueListParameterInOut',
-                ValueListProperty : 'code',
-                LocalDataProperty : region_code
-            },
-            {
-                $Type             : 'Common.ValueListParameterDisplayOnly',
-                ValueListProperty : 'name'
-            }
-            ]
+    region                @(Common.ValueList : {
+        Label          : 'Regions',
+        CollectionPath : 'Regions',
+        Parameters     : [
+        {
+            $Type             : 'Common.ValueListParameterInOut',
+            ValueListProperty : 'code',
+            LocalDataProperty : region_code
+        },
+        {
+            $Type             : 'Common.ValueListParameterDisplayOnly',
+            ValueListProperty : 'name'
         }
-    );
-    
-    projectType_name @(
-         Common.FieldControl : #Readonly
-    );
+        ]
+    });
 
-    projectType @(
+    projectType_name      @(Common.FieldControl : #Readonly);
+
+    projectType           @(
         Common           : {
-            Text            : projectType.name,
-            TextFor         : projectType.code,
-            TextArrangement : #TextOnly,
+            Text                     : projectType.name,
+            TextFor                  : projectType.code,
+            TextArrangement          : #TextOnly,
             ValueListWithFixedValues : true
         },
         Common.ValueList : {
@@ -55,10 +48,10 @@ annotate sdcpmtool.Projects with {
         }
     );
 
-    projectMode @(
+    projectMode           @(
         Common           : {
-            Text            : projectMode.name,
-            TextArrangement : #TextOnly,
+            Text                     : projectMode.name,
+            TextArrangement          : #TextOnly,
             ValueListWithFixedValues : true
         },
         Common.ValueList : {
@@ -78,10 +71,10 @@ annotate sdcpmtool.Projects with {
         }
     );
 
-    projectStatus @(
+    projectStatus         @(
         Common           : {
-            Text            : projectStatus.name,
-            TextArrangement : #TextOnly,
+            Text                     : projectStatus.name,
+            TextArrangement          : #TextOnly,
             ValueListWithFixedValues : true
         },
         Common.ValueList : {
@@ -101,7 +94,7 @@ annotate sdcpmtool.Projects with {
         }
     );
 
-    subRegion @(
+    subRegion             @(
         Common           : {
             Text            : subRegion.name,
             TextArrangement : #TextOnly
@@ -141,7 +134,7 @@ annotate sdcpmtool.Projects with {
                 $Type             : 'Common.ValueListParameterInOut',
                 ValueListProperty : 'code',
                 LocalDataProperty : primaryDeliveryCenter_code
-            },           
+            },
             {
                 $Type             : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'name'
@@ -150,7 +143,7 @@ annotate sdcpmtool.Projects with {
         }
     );
 
-    factoryRelevant @(
+    factoryRelevant       @(
         Common           : {
             Text            : factoryRelevant.name,
             TextArrangement : #TextOnly
@@ -163,7 +156,7 @@ annotate sdcpmtool.Projects with {
                 $Type             : 'Common.ValueListParameterInOut',
                 ValueListProperty : 'code',
                 LocalDataProperty : factoryRelevant_code
-            },           
+            },
             {
                 $Type             : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'name'
@@ -172,10 +165,10 @@ annotate sdcpmtool.Projects with {
         }
     );
 
-    bcpStatus @(
+    bcpStatus             @(
         Common           : {
-            Text            : bcpStatus.name,
-            TextArrangement : #TextOnly,
+            Text                     : bcpStatus.name,
+            TextArrangement          : #TextOnly,
             ValueListWithFixedValues : true
         },
         Common.ValueList : {
@@ -186,7 +179,7 @@ annotate sdcpmtool.Projects with {
                 $Type             : 'Common.ValueListParameterInOut',
                 ValueListProperty : 'code',
                 LocalDataProperty : bcpStatus_code
-            },           
+            },
             {
                 $Type             : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'name'
@@ -195,10 +188,11 @@ annotate sdcpmtool.Projects with {
         }
     );
 
-    projectManager @(
+    projectManager        @(
         Common           : {
             Text            : projectManager.userName,
-            TextArrangement : #TextFirst           
+            TextArrangement : #TextFirst,
+            FieldControl : #Mandatory            
         },
         Common.ValueList : {
             Label          : 'Users',
@@ -208,7 +202,7 @@ annotate sdcpmtool.Projects with {
                 $Type             : 'Common.ValueListParameterInOut',
                 ValueListProperty : 'userId',
                 LocalDataProperty : projectManager_userId
-            },           
+            },
             {
                 $Type             : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'userName'
@@ -221,10 +215,10 @@ annotate sdcpmtool.Projects with {
         }
     );
 
-    dpManager @(
+    dpManager             @(
         Common           : {
             Text            : dpManager.userName,
-            TextArrangement : #TextFirst          
+            TextArrangement : #TextFirst
         },
         Common.ValueList : {
             Label          : 'Users',
@@ -234,7 +228,7 @@ annotate sdcpmtool.Projects with {
                 $Type             : 'Common.ValueListParameterInOut',
                 ValueListProperty : 'userId',
                 LocalDataProperty : dpManager_userId
-            },           
+            },
             {
                 $Type             : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'userName'
@@ -247,10 +241,10 @@ annotate sdcpmtool.Projects with {
         }
     );
 
-    qaLeadId @(
+    qaLeadId              @(
         Common           : {
             Text            : qaLeadId.userName,
-            TextArrangement : #TextFirst         
+            TextArrangement : #TextFirst
         },
         Common.ValueList : {
             Label          : 'Users',
@@ -260,7 +254,7 @@ annotate sdcpmtool.Projects with {
                 $Type             : 'Common.ValueListParameterInOut',
                 ValueListProperty : 'userId',
                 LocalDataProperty : qaLeadId_userId
-            },           
+            },
             {
                 $Type             : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'userName'
@@ -273,10 +267,10 @@ annotate sdcpmtool.Projects with {
         }
     );
 
-    customerIndustry @(
+    customerIndustry      @(
         Common           : {
             Text            : customerIndustry.name,
-            TextArrangement : #TextOnly            
+            TextArrangement : #TextOnly
         },
         Common.ValueList : {
             Label          : 'Customer Industry',
@@ -286,7 +280,7 @@ annotate sdcpmtool.Projects with {
                 $Type             : 'Common.ValueListParameterInOut',
                 ValueListProperty : 'code',
                 LocalDataProperty : customerIndustry_code
-            },           
+            },
             {
                 $Type             : 'Common.ValueListParameterDisplayOnly',
                 ValueListProperty : 'name'
@@ -295,3 +289,5 @@ annotate sdcpmtool.Projects with {
         }
     );
 };
+
+

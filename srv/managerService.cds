@@ -1,13 +1,33 @@
 using {sap.sdcpmtool.transaction as sdcpmtool} from '../db/projectHeader';
-using { ProjectService } from './projectService';
 
-service ManagerService @(requires: 'authenticated-user'){
-    @Capabilities: { Insertable:false, Updatable:true, Deletable:false, Readable: true }
-    
-    entity MyProjects @(restrict: [
-  { grant: ['READ','WRITE'], to: 'managers' }]) as select from sdcpmtool.Projects { * } where projectManager.userId=$user.id;
+service ManagerService @(requires : 'sdcpmtool_managers') {
+    // @Capabilities: {
+    //     CollectionPropertyRestrictions: [
+    //     {
+    //         CollectionProperty : 'MyProjects',
+    //         Insertable : false,
+    //         Updatable : true,
+    //         Deletable : false
+    //     }
+    //     ] }
+
+    entity MyProjects as
+        select from sdcpmtool.Projects {
+            *
+        };
+
     entity User {
         key username : String;
     }
 }
+
+annotate ManagerService.MyProjects with @(
+
+Capabilities : {
+    InsertRestrictions : {Insertable : false},
+    UpdateRestrictions : {Updatable : true},
+    DeleteRestrictions : {Deletable : false},
+    SearchRestrictions : {Searchable : false}
+});
+annotate ManagerService.MyProjects with @odata.draft.enabled;
 
