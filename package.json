@@ -10,8 +10,8 @@
     "@sap/audit-logging": "^3.1.1",
     "@sap/cds": "^3",
     "@sap/hana-client": "^2.4.177",
-    "@sap/xsenv": "^3.0.0",
-    "@sap/xssec": "^3.0.9",
+    "@sap/xsenv": "^2.2.0",
+    "@sap/xssec": "^2.2.5",
     "express": "^4",
     "passport": "^0.4.1"
   },
@@ -27,6 +27,19 @@
         "/app/dss_admin/webapp/i18n",
         "/app/managers/webapp/i18n"
       ]
+    },
+    "requires": {
+      "db": {
+        "kind": "hana"
+      },
+      "uaa": {
+        "kind": "xsuaa"
+      }
+    },
+    "auth": {
+      "passport": {
+        "strategy": "JWT"
+      }
     }
   },
   "devDependencies": {

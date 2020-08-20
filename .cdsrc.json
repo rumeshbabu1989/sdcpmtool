@@ -61,28 +61,14 @@
         "credentials": {
           "database": "db/sdcpmtool.db"
         }
+      },
+      "uaa": {
+        "kind": "xsuaa"
       }
     },
     "auth": {
       "passport": {
-        "strategy": "mock",
-        "users": {
-          "nirmal.g@sap.com": {
-            "roles": ["admin"]
-          },
-          "r.somaskandan@sap.com": {
-            "password":"test123",
-            "ID":"r.somaskandan@sap.com",
-            "roles": ["sdcpmtool_dss_admin","sdcpmtool_managers"]
-          },
-          "anonymous": {
-            "password":"test123",
-            "roles": ["sdcpmtool_managers","sdcpmtool_dss_admin"]
-          },
-          "admin": {
-            "roles": ["sdcpmtool_managers","sdcpmtool_dss_admin"]
-          }
-        }
+        "strategy": "JWT"   
       }
     }
   }

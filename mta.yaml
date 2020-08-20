@@ -84,7 +84,7 @@ modules:
      httpHeaders: >-
        [
            {
-               "Content-Security-Policy": "frame-ancestors 'self' *.cpp.cfapps.sap.hana.ondemand.com ;"
+               "Content-Security-Policy": "frame-ancestors 'self' *.cfapps.eu10.hana.ondemand.com;"
            }
        ]
      SEND_XFRAMEOPTIONS: false         

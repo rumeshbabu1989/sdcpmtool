@@ -7,8 +7,10 @@ ar.beforeRequestHandler.use(async(req, res, next) => {
 	// get the current user out of IDP
 	const jwt = jwtDecode(req.user.token.accessToken);
 	
+		
+    console.log("jwt Token 2");
     console.log(jwt);
-    res.setHeader('Authorization', `Bearer ${req.user.token.accessToken}`);
+    // req.setHeader('Authorization', `Bearer ${req.user.token.accessToken}`);
     
 	next();
 
