@@ -67,4 +67,4 @@ annotate ProjectService.Projects with @(UI : {
 });
 
 annotate sap.sdcpmtool.transaction.Projects with @fiori.draft.enabled;
-annotate ProjectService.Projects with @odata.draft.enabled;
+// annotate ProjectService.Projects with @odata.draft.enabled;

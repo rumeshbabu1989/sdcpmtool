@@ -159,6 +159,6 @@
     },
 
     "sap.platform.cf": {        
-        "oAuthScopes": ["$XSAPPNAME.admin"]
+        "oAuthScopes": ["$XSAPPNAME.sdcpmtool_dss_admin"]
     }
 }

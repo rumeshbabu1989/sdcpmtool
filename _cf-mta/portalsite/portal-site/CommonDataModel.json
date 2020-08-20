@@ -81,7 +81,7 @@
         "identification": {
           "id": "a6fcf49f-8892-4250-aead-82e1910e8194",
           "entityType": "site",
-          "title": "Sample Apps"
+          "title": "SDC PM Tool"
         },
         "payload": {
           "config": {
@@ -102,7 +102,7 @@
               }
             }
           },
-          "groupsOrder": ["sampleAppsGroup"],
+          "groupsOrder": ["sdcpmtoolAdminGroup", "sdcpmtoolManagersGroup"],
           "sap.cloud.portal": {
             "config": {
               "ui5LibraryUrl": "https://ui5.sap.com",     

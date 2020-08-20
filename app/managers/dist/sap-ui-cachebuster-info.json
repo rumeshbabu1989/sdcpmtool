@@ -1,10 +1,10 @@
 {
-  "Component-dbg.js": 1597645032202,
-  "i18n/i18n.properties": 1597645032202,
-  "manifest.json": 1597645032206,
-  "Component.js": 1597645032202,
-  "manifest-bundle.zip": 1597647998924,
-  "Component-preload.js": 1597647999073,
-  "i18n/i18n_en.properties": 1597645032202,
-  "index.html": 1597645032202
+  "Component.js": 1597645032000,
+  "i18n/i18n_en.properties": 1597645032000,
+  "manifest.json": 1597885525611,
+  "i18n/i18n.properties": 1597645032000,
+  "manifest-bundle.zip": 1597931861097,
+  "Component-preload.js": 1597931861256,
+  "Component-dbg.js": 1597645032000,
+  "index.html": 1597645032000
 }

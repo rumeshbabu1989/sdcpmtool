@@ -2,6 +2,20 @@
     "welcomeFile": "/cp.portal",
     "authenticationMethod": "route",
     "routes": [
+        {
+        "source": "^/project/(.*)$",
+        "target": "/project/$1",
+        "destination": "srv-binding",
+        "authenticationType": "xsuaa",
+        "csrfProtection": false
+      },
+       {
+        "source": "^/manager/(.*)$",
+        "target": "/manager/$1",
+        "destination": "srv-binding",
+        "authenticationType": "xsuaa",
+        "csrfProtection": false
+      },
       {
         "source": "^(.*)",
         "target": "$1",       

@@ -108,7 +108,7 @@
                         "settings": {
                             "entitySet": "MyProjects",
                             "navigation": {
-                                "Projects": {
+                                "MyProjects": {
                                     "detail": {
                                         "route": "ProjectsDetails"
                                     }
@@ -145,6 +145,6 @@
     },
 
     "sap.platform.cf": {        
-        "oAuthScopes": ["$XSAPPNAME.managers"]
+        "oAuthScopes": ["$XSAPPNAME.sdcpmtool_managers"]
     }
 }
